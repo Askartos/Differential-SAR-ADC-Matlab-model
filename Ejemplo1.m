@@ -1,12 +1,10 @@
-Nbits=5; %Numero de bits
-Cu=103-12; % Capacitancia Unitaria
-Ocu=10e-3; % desviacion estándar de la capacitancia unitaria
-Nsample=200; %Numero de muestras
-Vee=15; % Tensión de referencia positiva
-Vss=-15; % Tensión de referencia negativa
-Vcm=0; %Tension de modo común
-Vdif=Vee-Vss; %Tension diferencial
-VinP=2;
-VinN=-2;
-
-[BITS]=SAR_ADC(Nbits,Cu,Ocu,Nsample,Vee, Vss, VinP, VinN, Vcm,Vdif);
+ Nbits=4; %Numero de bits
+ Cu=1; % Capacitancia Unitaria
+ sigmaCu=0; % desviacion estï¿½ndar de la capacitancia unitaria
+ Vdd=8; % Tensiï¿½n de referencia positiva
+ Vss=-8; % Tensiï¿½n de referencia negativa
+ Vcm=(Vdd-Vss)/2; %Tension de modo comï¿½n
+ Vin=7
+ VinP=Vin/2  + Vcm;
+ VinN=-Vin/2 + Vcm;
+ [BITS]=SAR_ADC(Nbits,Cu,sigmaCu,Vdd, Vss, VinP, VinN, Vcm)
