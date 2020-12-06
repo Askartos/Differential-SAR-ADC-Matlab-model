@@ -4,7 +4,8 @@
  Vdd=8; % Tensi�n de referencia positiva
  Vss=-8; % Tensi�n de referencia negativa
  Vcm=(Vdd-Vss)/2; %Tension de modo com�n
- Vin=7
+ Vin=11
  VinP=Vin/2  + Vcm;
  VinN=-Vin/2 + Vcm;
  [BITS]=SAR_ADC(Nbits,Cu,sigmaCu,Vdd, Vss, VinP, VinN, Vcm)
+ recoveredNumber=bits2num(BITS)

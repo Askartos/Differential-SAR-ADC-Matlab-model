@@ -12,13 +12,8 @@ for i=1:N
         Cvddp=Cvddp+cap_bankp(i);
         Cvddn=Cvddn+cap_bankp(i);
     end
-    if(bits(i) == 0)
-       % Cvddn=Cvddn+cap_bankp(i);
-    end
 end
-%Cvddn=Cvddn+cap_bankn(N+1)%additional cap
 voutp= vcm-vinP + vdd*(Cvddp/total_capP);
 voutn= vcm-vinN + vss*(Cvddn/total_capN);
-
 vouts=[voutp voutn];
 end
