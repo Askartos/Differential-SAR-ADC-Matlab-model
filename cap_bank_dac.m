@@ -10,7 +10,7 @@ N=length(bits);
 for i=1:N
     if(bits(i) == 1)
         Cvddp=Cvddp+cap_bankp(i);
-        Cvddn=Cvddn+cap_bankp(i);
+        Cvddn=Cvddn+cap_bankn(i);
     end
 end
 voutp= vcm-vinP + vdd*(Cvddp/total_capP);
