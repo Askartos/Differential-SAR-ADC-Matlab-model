@@ -1,11 +1,13 @@
- Nbits=4; %Numero de bits
+ Nbits=5; %Numero de bits
  Cu=1; % Capacitancia Unitaria
  sigmaCu=0; % desviacion est�ndar de la capacitancia unitaria
  Vdd=8; % Tensi�n de referencia positiva
  Vss=-8; % Tensi�n de referencia negativa
- Vcm=(Vdd-Vss)/2; %Tension de modo com�n
- Vin=10
+ Vcm=(Vdd-Vss)/2+Vss; %Tension de modo com�n
+ Vin=4;
  VinP=Vin/2  + Vcm;
  VinN=-Vin/2 + Vcm;
- [BITS]=SAR_ADC(Nbits,Cu,sigmaCu,Vdd, Vss, VinP, VinN, Vcm)
+ %BITS=SAR_ADC(Nbits-1,Cu,sigmaCu,Vdd, Vss, VinP, VinN, Vcm);
+ %BITS=[0 BITS] %sing bit always set to 0
+ BITS=SAR_ADC_v2(Nbits,Cu,sigmaCu,Vdd, Vss, VinP, VinN, Vcm)
  recoveredNumber=bits2num(BITS)
