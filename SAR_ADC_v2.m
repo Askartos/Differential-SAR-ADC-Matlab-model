@@ -10,7 +10,7 @@ function [bits]=SAR_ADC_v2(Nbits,Cu,sigmaCu,Vdd, Vss,vinP, vinN, Vcm)
     end
     for count=2:Nbits
         bits(count)=1;
-        vouts=cap_bank_dac(cap_bank,Vdd,Vss,Vcm,vinP,vinN,bits(:,2:Nbits))
+        vouts=cap_bank_dac(cap_bank,Vdd,Vss,Vcm,vinP,vinN,bits(:,2:Nbits));
         comp_out=vouts(1)>vouts(2);
         if (comp_out)
             bits(count)=0;
