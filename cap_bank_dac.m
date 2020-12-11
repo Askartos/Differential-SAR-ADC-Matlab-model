@@ -4,16 +4,17 @@ cap_bankn=cap_banks(:,2);
 
 total_capP = sum(cap_bankp);
 total_capN = sum(cap_bankn);
-Cvddp=0;
-Cvddn=0;
+Cvrefp=0;
+Cvrefn=0;
 N=length(bits);
 for i=1:N
     if(bits(i) == 1)
-        Cvddp=Cvddp+cap_bankp(i);
-        Cvddn=Cvddn+cap_bankn(i);
+        Cvrefp=Cvrefp+cap_bankp(i);
+        Cvrefn=Cvrefn+cap_bankn(i);
     end
 end
-voutp= vcm-vinP + vdd*(Cvddp/total_capP);
-voutn= vcm-vinN + vss*(Cvddn/total_capN);
+
+voutp= vcm-vinP + vdd*(Cvrefp/total_capP);
+voutn= vcm-vinN + vss*(Cvrefn/total_capN);
 vouts=[voutp voutn];
 end
