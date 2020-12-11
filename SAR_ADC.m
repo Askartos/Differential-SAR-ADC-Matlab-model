@@ -1,5 +1,4 @@
-function [bits]=SAR_ADC(Nbits,Cu,sigmaCu,Vdd, Vss,vinP, vinN, Vcm)
-    cap_bank=[cap_bank_init(Cu,sigmaCu,Nbits),cap_bank_init(Cu,sigmaCu,Nbits)];
+function [bits]=SAR_ADC(Nbits,cap_bank,Vdd, Vss,vinP, vinN, Vcm)
     bits=zeros(1,Nbits);
     for count=1:Nbits
         bits(count)=1;
