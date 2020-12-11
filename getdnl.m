@@ -1,6 +1,6 @@
 function dnl=getdnl(vout,vin,LSB,steps,delta)
-
-        dnls=[];
+        format long
+        dnls=[0];
         vidl=zeros(size(vin));
         error=0;
         for i=1:steps+1
@@ -12,6 +12,5 @@ function dnl=getdnl(vout,vin,LSB,steps,delta)
                 error=0;
             end
         end
-        dnls
         dnl=max(abs(dnls));
 end

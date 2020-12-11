@@ -1,4 +1,5 @@
 function vouts=cap_bank_dac(cap_banks,vdd,vss,vcm,vinP,vinN,bits)
+format long
 cap_bankp=cap_banks(:,1);
 cap_bankn=cap_banks(:,2);
 

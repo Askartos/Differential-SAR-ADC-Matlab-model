@@ -1,4 +1,5 @@
- Nbits=4; %Numero de bits
+format long
+Nbits=4; %Numero de bits
  Cu=1; % Capacitancia Unitaria
  sigmaCu=0; % desviacion est�ndar de la capacitancia unitaria
  Vdd=8; % Tensi�n de referencia positiva
