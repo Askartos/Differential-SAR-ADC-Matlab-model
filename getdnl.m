@@ -1,16 +1,17 @@
-function dnl=getdnl(vout,vin,LSB,steps,delta)
+function dnl=getdnl(vout,LSB,steps,delta,Nbits)
         format long
-        dnls=[0];
-        vidl=zeros(size(vin));
-        error=0;
+        dnls=zeros(2^Nbits,1);
+        value=vout(1);
+        width=0;
         for i=1:steps+1
-            vidl(i)=floor(vin(i)/LSB);
-            if((vidl(i)-vout(i))~=0)
-                error=error+delta;
-            elseif(error~=0)
-                dnls=[dnls;error/LSB];
-                error=0;
+            if(abs(value-vout(i))<1e-10)
+                width=width+delta;
+            else
+                dnls(i)=(width/LSB)-1;
+                width=delta;
+                value=vout(i);
             end
         end
-        dnl=max(abs(dnls));
+        [ ~ ,idx]=max(abs(dnls));
+        dnl=dnls(idx);
 end
