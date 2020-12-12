@@ -33,3 +33,13 @@ for count1=1:length(NBits)
     sigmaDNL(:,count1)=(2.^Var1(count1)).*Sigma_Mean;
     Ch_Area(count1,:)=Cu_Area*2.^NBits(count1);
 end
+
+
+Plot_Results(Cu_Mean,sigmaDNL,NBits);
+
+% figure
+% plot(NBits,Ch_Area,'-o')
+% ax = gca;
+% %ax.XAxis.Exponent = -15;
+% ax.YAxis.Exponent = -12;
+% legend('4u','5u','6u','7u','8u','9u','10u','11u','12u','13u','14u','15u','16u','17u','18u','19u')
