@@ -1,5 +1,4 @@
 close all
-clear
 format long
 
 Cu_L=(4e-6:1e-6:19e-6);%Vector de longitudes de los capacitores caracterizados
@@ -14,12 +13,12 @@ Cu_Sigma=[154.2e-18, 188e-18, 221.9e-18, 255.7e-18, 289.6e-18 323.5e-18,...
         560.5e-18, 594.3e-18, 628.2e-18, 662.1e-18];%vector de sigma Cu
     
 k=1.3806e-23;%constante de boltzman
-T=273.15+50;%Temperatura (50°C)
+T=273.15+50;%Temperatura (50ï¿½C)
 Vdd=1.8;%Tension de referencia positivo
 Vss=0;% Tension de referencia negativa
 NBits=(6:14);%Numero de Bits en los que se desee evaluar
 LSB=(Vdd-Vss)./(2.^NBits);%Delta de paso segun el numero de Bits
-Sigma_Mean=Cu_Sigma./Cu_Mean;%Relación entre el Sigma y la media de los capacitores caracterizados
+Sigma_Mean=Cu_Sigma./Cu_Mean;%Relaciï¿½n entre el Sigma y la media de los capacitores caracterizados
 Var1=(NBits-1)/2;%Vector relacionado con Nbits para calcular sigmaDNL
 sigmaDNL=zeros(length(Sigma_Mean),length(NBits));%Vector en el que se registraran los valores de sigma DNL (varia con Nbits y con cada Cu)
 Ch_Area=zeros(length(NBits),length(Sigma_Mean));%Vcetor en el que se registran los valores de cada area de dependiendo del numero de Bits
