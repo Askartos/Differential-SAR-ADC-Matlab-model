@@ -25,7 +25,7 @@ sigmaDNL=zeros(length(Sigma_Mean),length(NBits));%Vector en el que se registrara
 Ch_Area=zeros(length(NBits),length(Sigma_Mean));%Vector en el que se registran los valores de cada area de dependiendo del numero de Bits
 AREA=zeros(1,length(NBits));%Vector para almacenar el area minima necesaria en cada numero de Bits para cumplir con el criterio de los 3 sigmas
 
-ChMin=(k*T)./(LSB.^2);%Capacitacia de hold minima para cada numero de Bits
+ChMin=24*(k*T)./(LSB.^2);%Capacitacia de hold minima para cada numero de Bits
 CuMin=ChMin./(2.^NBits);%Capacitancia minima para
 
 %%Calculo de DNL y de Areas, dependiendo de cada capacitancia, cada
