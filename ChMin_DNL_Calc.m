@@ -21,14 +21,45 @@ LSB=(Vdd-Vss)./(2.^NBits);%Delta de paso segun el numero de Bits
 Sigma_Mean=Cu_Sigma./Cu_Mean;%Relaciï¿½n entre el Sigma y la media de los capacitores caracterizados
 Var1=(NBits-1)/2;%Vector relacionado con Nbits para calcular sigmaDNL
 sigmaDNL=zeros(length(Sigma_Mean),length(NBits));%Vector en el que se registraran los valores de sigma DNL (varia con Nbits y con cada Cu)
-Ch_Area=zeros(length(NBits),length(Sigma_Mean));%Vcetor en el que se registran los valores de cada area de dependiendo del numero de Bits
+Ch_Area=zeros(length(NBits),length(Sigma_Mean));%Vector en el que se registran los valores de cada area de dependiendo del numero de Bits
+AREA=zeros(1,length(NBits));%Vector para almacenar el area minima necesaria en cada numero de Bits para cumplir con el criterio de los 3 sigmas
 
 ChMin=(k*T)./(LSB.^2);%Capacitacia de hold minima para cada numero de Bits
 CuMin=ChMin./(2.^NBits);%Capacitancia minima para
 
 %%Calculo de DNL y de Areas, dependiendo de cada capacitancia, cada
-%%numero de Bits
+%numero de Bits
 for count1=1:length(NBits)
     sigmaDNL(:,count1)=(2.^Var1(count1)).*Sigma_Mean;
     Ch_Area(count1,:)=Cu_Area*2.^NBits(count1);
+    ban1=1;
+    for count2=1:length(Cu_Mean)
+        if(sigmaDNL(count2,count1)<0.166)
+            AREA(1,count1)=Ch_Area(count1,ban1);
+            count2=length(Cu_Mean);
+        else
+        ban1=ban1+1;  
+        end 
+    end
 end
+
+%Impresion de resultados de sigmaDNL
+Plot_Results(Cu_Mean,sigmaDNL,NBits);
+
+%Impresion de reusltados de area, para todos Nbits, y todas las Cunitarias
+figure
+plot(NBits,Ch_Area*1e12,'-o','LineWidth',3,'MarkerSize',5)
+%ax.XAxis.Exponent = -15;
+gca.YAxis.Exponent = -12;
+xlabel('Número de BITS')
+ylabel('Area de los Capacitores [u^2 m]')
+title(legend('4u','5u','6u','7u','8u','9u','10u','11u','12u','13u','14u','15u','16u','17u','18u','19u','Location','northwest'),'Longitud de C')
+title('Area de los capacitores Vs Numero de Bits')
+
+%Impresion de la curva del area minima para cada numero de BITS
+figure
+plot(NBits,AREA*1e12,'-o','LineWidth',3,'MarkerSize',5)
+gca.YAxis.Exponent = -12;
+xlabel('Número de BITS')
+ylabel('Area de los Capacitores [u^2 m]')
+title('Area minima Vs Numero de Bits')
