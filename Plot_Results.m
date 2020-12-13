@@ -1,6 +1,6 @@
 function Plot_Results(Cu_Mean,sigmaDNL,NBits)
 %% Funcion para graficar los resultados del DNL Cu_Mean es un vector fila
-% de tamaño 1*Ncu y sigmaDNL es una matriz de tamaño Ncu*Nbits,donde Ncu es 
+% de tamaï¿½o 1*Ncu y sigmaDNL es una matriz de tamaï¿½o Ncu*Nbits,donde Ncu es 
 % el numero de capacitancias unitarias que se encuentren en comparacion y
 % Nbits el numero de Bits que se deseen evaluar. Nbits es el vector que
 % contiene los Bits que se encuentran en comparacion.
@@ -20,5 +20,5 @@ for count1=1:length(NBits)
     Vec(count1)={vec};
 end
 title(legend(Vec),'Numero de Bits')
-title('DNL Vs C_u_n_i_t_a_r_i_a')
+
 end
