@@ -3,14 +3,14 @@ function Plot_Results(Cu_Mean,sigmaDNL,NBits)
 % de tamaño 1*Ncu y sigmaDNL es una matriz de tamaño Ncu*Nbits,donde Ncu es 
 % el numero de capacitancias unitarias que se encuentren en comparacion y
 % Nbits el numero de Bits que se deseen evaluar. Nbits es el vector que
-% contiene los Bits que se encuentran en comparacion
+% contiene los Bits que se encuentran en comparacion.
 limite=ones(1,length(Cu_Mean))*0.16;
 figure
 Cu_Mean=Cu_Mean*1e15;
 
 plot(Cu_Mean,sigmaDNL,'-o','LineWidth',2,'MarkerSize',5)
 xlabel('Capacitancia Unitaria (fF)')
-ylabel('DNL')
+ylabel('DNL [LSB]')
 xlim([min(Cu_Mean)-10 max(Cu_Mean)+10])
 hold on
 plot(Cu_Mean,limite,'k--','LineWidth',1.5)
@@ -20,5 +20,5 @@ for count1=1:length(NBits)
     Vec(count1)={vec};
 end
 title(legend(Vec),'Numero de Bits')
-
+title('DNL Vs C_u_n_i_t_a_r_i_a')
 end
