@@ -1,9 +1,9 @@
 function DNLS=ADC_DNL_sweep(Nbits,Cu,sigmaCu,Vdd, Vss,Vcm)
 format long
     substeps=200;
-    LSB=(Vdd-Vss)/(2^Nbits);
-    delta=LSB/substeps;    
-    Vin_vector=0:delta:(2^(Nbits)-1)*LSB;
+    LSB=(Vdd-Vss)/(2^Nbits)
+    delta=LSB/substeps;
+    Vin_vector=0:delta:Vdd-delta;
     cap_bank=[cap_bank_init(Cu,sigmaCu,Nbits),cap_bank_init(Cu,sigmaCu,Nbits)];
     Vout_vector=zeros(length(Vin_vector),1);
     for step=1:length(Vin_vector)
@@ -13,8 +13,9 @@ format long
         Vout_vector(step)=bits2num(BITS);
     end
     DNLS=getdnl(Vout_vector,LSB,delta,Nbits);
-    stairs(Vin_vector,floor(Vin_vector/LSB),'LineWidth',2,'Color','k');
+    figure
+    stairs(Vin_vector,(Vin_vector/LSB),'LineWidth',2,'Color',[0.4940, 0.1840, 0.5560]);
     hold on
-    stairs(Vin_vector,Vout_vector,'LineWidth',2);
-    legend("Ideal output","ADC output","location","northwest");
+    stairs(Vin_vector,Vout_vector,'LineWidth',2,'Color',[0.3010, 0.7450, 0.9330]);
+    legend("ADC Input / LSB","ADC output","location","northwest");
 end
