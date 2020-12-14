@@ -1,6 +1,6 @@
 function [uDNL,sDNL]=montecarloDNL(Nsample,Nbits,Cu,sigmaCu,Vdd, Vss,Vcm)
 format long
-    if(Nbits<10)
+    if(Nbits<10)%sub resolution adjustment required in order to get results in reasonable time
         substeps=200-40*(Nbits-6);
     elseif(Nbits<12)
        substeps=80-20*(Nbits-9);
@@ -11,7 +11,7 @@ format long
     delta=LSB/substeps;
     dnls=zeros(Nsample,1);
     
-    Vin_vector=0:delta:(2^(Nbits-1)+1)*LSB;
+    Vin_vector=0:delta:(2^(Nbits)-1)*LSB;
 
     for sample=1:Nsample
         cap_bank=[cap_bank_init(Cu,sigmaCu,Nbits),cap_bank_init(Cu,sigmaCu,Nbits)];
@@ -22,7 +22,9 @@ format long
             BITS=SAR_ADC(Nbits,cap_bank,Vdd, Vss, VinP, VinN, Vcm);
             Vout_vector(step)=bits2num(BITS);
         end
-        dnls(sample)=getdnl(Vout_vector,LSB,delta,Nbits);
+        dnls_sub=getdnl(Vout_vector,LSB,delta,Nbits);
+        [ ~ ,idx]=max(abs(dnls_sub));
+        dnls(sample)=dnls_sub(idx);
     end
     uDNL=mean(dnls);
     sDNL=std(dnls);
