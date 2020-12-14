@@ -9,16 +9,16 @@ figure
 Cu_Mean=Cu_Mean*1e15;
 
 plot(Cu_Mean,sigmaDNL,'-o','LineWidth',2,'MarkerSize',5)
-xlabel('Capacitancia Unitaria (fF)')
+xlabel('Unit Capacitance (fF)')
 ylabel('DNL [LSB]')
 xlim([min(Cu_Mean)-10 max(Cu_Mean)+10])
 hold on
-plot(Cu_Mean,limite,'k--','LineWidth',1.5)
+plot(Cu_Mean,limite,'k-.','LineWidth',1.5)
 Vec=cell(size(NBits));
 for count1=1:length(NBits)
     vec=sprintf('%d BITS \n', NBits(count1));
     Vec(count1)={vec};
 end
-title(legend(Vec),'Numero de Bits')
+title(legend(Vec),'Number of Bits')
 
 end

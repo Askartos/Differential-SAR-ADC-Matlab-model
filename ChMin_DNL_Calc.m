@@ -1,5 +1,6 @@
 close all
 format long
+load('sDNL_uDNL.mat', 'sDNL')
 
 Cu_L=(4e-6:1e-6:19e-6);%Vector de longitudes de los capacitores caracterizados
 Cu_Area=Cu_L.^2;%Vector de areas de cada capacitancia unitaria
@@ -49,25 +50,38 @@ end
 
 %Impresion de resultados de sigmaDNL
 Plot_Results(Cu_Mean,sigmaDNL,NBits);
-title('Sigma DNL teorico Vs C_u_n_i_t_a_r_i_a')
+title('Virtuoso Sigma DNL Vs C_u_n_i_t')
 Plot_Results(Cu_Mean,sDNL,NBits);
-title('Sigma DNL modelo Vs C_u_n_i_t_a_r_i_a')
+title('Matlab model Sigma DNL Vs C_u_n_i_t')
 
 %Impresion de reusltados de area, para todos Nbits, y todas las Cunitarias
 figure
 plot(NBits,Ch_Area*1e12,'-o','LineWidth',3,'MarkerSize',5)
 %ax.XAxis.Exponent = -15;
 gca.YAxis.Exponent = -12;
-xlabel('Numero de BITS')
-ylabel('Area de los Capacitores [u^2 m]')
-title(legend('4u','5u','6u','7u','8u','9u','10u','11u','12u','13u','14u','15u','16u','17u','18u','19u','Location','northwest'),'Longitud de C')
-title('Area de los capacitores Vs Numero de Bits')
+xlabel('Number of Bits')
+ylabel('Capacitors Area [u^2 m]')
+title(legend('4u','5u','6u','7u','8u','9u','10u','11u','12u','13u','14u','15u','16u','17u','18u','19u','Location','northwest'),'Capacitor lengths')
+title('Capacitors Area Vs Number of Bits')
 
 %Impresion de la curva del area minima para cada numero de BITS
 figure
-plot(NBits(1:6),AREA(:,1:6)*1e6,'-o','LineWidth',3,'MarkerSize',5)
-gca.YAxis.Exponent = -6;
-xlabel('Numero de BITS')
-ylabel('Area de los Capacitores [m^2 m]')
-legend('Teorico', 'Modelo SAR','Location','northwest')
-title('Area minima Vs Numero de Bits')
+plot(NBits,AREA*1e12,'-o','LineWidth',3,'MarkerSize',5)
+gca.YAxis.Exponent = -12;
+xlabel('Number of Bits')
+ylabel('Capacitors Area [um^2]')
+gca.FontSize = 20;
+legend('Virtuoso model', 'Matlab model','Location','northwest')
+title('Minimum Area Vs Number of Bits')
+
+figure
+semilogy(NBits, ChMin*1e15,'b-*','LineWidth',3,'MarkerSize',5)
+xlabel('Number of Bits')
+ylabel('Minimum sampling capacitance [fF]')
+title('Minimum sampling capacitance Vs Number of Bits')
+
+figure 
+bar(NBits, log(ChMin*1e18))
+xlabel('Number of Bits')
+ylabel('Minimum sampling capacitance [fF]')
+title('Minimum sampling capacitance Vs Number of Bits')
