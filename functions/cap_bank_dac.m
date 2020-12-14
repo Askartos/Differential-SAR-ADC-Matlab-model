@@ -16,7 +16,7 @@ for i=1:N
 end
 Cvmcp=total_capP-Cvrefp;
 Cvmcn=total_capN-Cvrefn;
-voutp= vcm-vinP + vdd*(Cvrefp/total_capP)+vcm*(Cvmcp/total_capP);
-voutn= vcm-vinN + vss*(Cvrefn/total_capN)+vcm*(Cvmcn/total_capN);
+voutp= vinP-vcm + vss*(Cvrefp/total_capP)+vcm*(Cvmcp/total_capP);
+voutn= vinN-vcm + vdd*(Cvrefn/total_capN)+vcm*(Cvmcn/total_capN);
 vouts=[voutp voutn];
 end
