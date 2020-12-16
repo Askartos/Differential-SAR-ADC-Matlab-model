@@ -2,7 +2,7 @@ close all
 format long
 
 addpath(genpath('../functions'));
-load("../mat_files/sDNL_uDNL.mat");
+load("../mat_files/sDNL_uDNL_mix.mat");
 
 Cu_L=(4e-6:1e-6:19e-6);%Vector de longitudes de los capacitores caracterizados
 Cu_Area=Cu_L.^2;%Vector de areas de cada capacitancia unitaria
