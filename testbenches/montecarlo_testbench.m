@@ -19,7 +19,7 @@ uDNL=zeros(length(NBits),length(Cu_Mean));
 sDNL=zeros(length(NBits),length(Cu_Mean));
  for k=1:length(NBits)
  tic
-     for i=1:length(Cu_Mean)%parallel execution for loop
+     for i=1:length(Cu_Mean)
        [uDNL(k,i),sDNL(k,i)]=montecarloDNL(Nsamples,NBits(k),Cu_Mean(i),Cu_Sigma(i),Vdd, Vss,Vcm);
      end
  toc

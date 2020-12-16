@@ -68,7 +68,7 @@ title('Capacitors Area Vs Number of Bits')
 
 %Impresion de la curva del area minima para cada numero de BITS
 figure
-plot(NBits,AREA*1e12,'-o','LineWidth',3,'MarkerSize',5)
+semilogy(NBits,AREA*1e12,'-o','LineWidth',3,'MarkerSize',5)
 gca.YAxis.Exponent = -12;
 xlabel('Number of Bits')
 ylabel('Capacitors Area [um^2]')
@@ -78,10 +78,14 @@ title('Minimum Area Vs Number of Bits')
 
 figure
 semilogy(NBits, ChMin*1e15,'b-*','LineWidth',3,'MarkerSize',5)
+hold on
+Cu_sigma=[35.56e-15 35.56e-15 35.56e-15 35.56e-15 35.56e-15 35.56e-15 54.22e-15 103.3e-15 206.1e-15];
+Ch_sigma=(2.^(6:14)).*Cu_sigma;
+semilogy(NBits, Ch_sigma*1e15,'-*','Color',[39/255 119/255 20/255],'LineWidth',3,'MarkerSize',5)
 xlabel('Number of Bits')
 ylabel('Minimum sampling capacitance [fF]')
 title('Minimum sampling capacitance Vs Number of Bits')
-
+legend('Noise based equation','3σDNL','Location','northwest')
 figure 
 bar(NBits, log(ChMin*1e18))
 xlabel('Number of Bits')
