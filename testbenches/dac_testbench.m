@@ -10,7 +10,7 @@ Vin=12;
 VinP=Vin/2  + Vcm
 VinN=-Vin/2 + Vcm
 cap_banks=[cap_bank_init(Cu,sigmaCu,Nbits),cap_bank_init(Cu,sigmaCu,Nbits)];
-bits=[0;0;0;0];
+bits=[1;0;0;0];
 vouts=cap_bank_dac(cap_banks,Vdd,Vss,Vcm,VinP,VinN,bits);
 vouts
 voutp_tp=Vcm-VinP %+ Vdd/2 + Vdd/4 + Vdd/8 + Vdd/16

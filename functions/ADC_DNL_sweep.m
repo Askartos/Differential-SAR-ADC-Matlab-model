@@ -6,12 +6,14 @@ format long
     Vin_vector=0:delta:Vdd-delta;
     cap_bank=[cap_bank_init(Cu,sigmaCu,Nbits),cap_bank_init(Cu,sigmaCu,Nbits)];
     Vout_vector=zeros(length(Vin_vector),1);
+    tic
     for step=1:length(Vin_vector)
         VinP=Vin_vector(step)/2  + Vcm;
         VinN=-Vin_vector(step)/2 + Vcm;
         BITS=SAR_ADC(Nbits,cap_bank,Vdd, Vss, VinP, VinN, Vcm);
         Vout_vector(step)=bits2num(BITS);
     end
+    toc
     DNLS=getdnl(Vout_vector,LSB,delta,Nbits);
     figure
     stairs(Vin_vector,(Vin_vector/LSB),'LineWidth',2,'Color',[0.4940, 0.1840, 0.5560]);
