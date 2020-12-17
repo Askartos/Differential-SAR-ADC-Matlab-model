@@ -12,6 +12,7 @@ Vin=LSB*input_number;
 VinP=Vin/2  + Vcm;
 VinN=-Vin/2 + Vcm;
 cap_bank=[cap_bank_init(Cu,sigmaCu,Nbits),cap_bank_init(Cu,sigmaCu,Nbits)];
+
 BITS=SAR_ADC_signed(Nbits,cap_bank,Vdd, Vss, VinP, VinN, Vcm)
 recoveredNumber_signed=(1-2*(~BITS(1)))*bits2num(BITS(:,2:Nbits))
 Vin=LSB*input_number;

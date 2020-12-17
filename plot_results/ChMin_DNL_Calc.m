@@ -36,14 +36,14 @@ for count1=1:length(NBits)
     sigmaDNL(:,count1)=(2.^Var1(count1)).*Sigma_Mean;
     Ch_Area(count1,:)=Cu_Area*2.^NBits(count1);
     for count2=1:length(Cu_Mean)
-        if(sigmaDNL(count2,count1)<0.166)
+        if(sigmaDNL(count2,count1)<0.16)
             AREA(1,count1)=Ch_Area(count1,count2);
             break; 
         end 
     end
     
     for count2=1:length(Cu_Mean)
-        if(sDNL(count2,count1)<0.166)
+        if(sDNL(count2,count1)<0.16)
             AREA(2,count1)=Ch_Area(count1,count2);
             break; 
         end 
